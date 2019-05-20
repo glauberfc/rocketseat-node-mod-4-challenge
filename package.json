@@ -4,8 +4,11 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "yarn build && nodemon dist/index.js",
-    "build": "babel index.js -d dist"
+    "start": "yarn start:prod",
+    "start:pro": "NODE_ENV=production node dist/server.js",
+    "start:dev": "NODE_ENV=development node dist/server.js",
+    "build": "rm -rf dist && babel src -d dist",
+    "watch": "nodemon --exec \"yarn build && yarn start:dev\" --watch src"
   },
   "husky": {
     "hooks": {
@@ -31,7 +34,9 @@
     "pretty-quick": "^1.10.0"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "express": "^4.17.0",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.5.9"
   }
 }
