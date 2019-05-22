@@ -74,6 +74,10 @@ export async function update(req, res) {
       .json('Password and password confirmation should be equals')
   }
 
+  if (password.length < 3) {
+    return res.status(400).json('The password need to be at least 3 characters')
+  }
+
   try {
     const user = await model.findByIdAndUpdate(
       userData.id,
